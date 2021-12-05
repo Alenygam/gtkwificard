@@ -1,0 +1,6 @@
+[submodule "qr-code"]
+	path = qr-code
+	url = https://github.com/Alenygam/create-wifi-qr-code
+[submodule "card"]
+	path = card
+	url = https://github.com/Alenygam/create-wifi-card
