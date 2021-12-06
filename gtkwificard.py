@@ -72,11 +72,15 @@ class MainWindow(Gtk.Window):
             self.passwordEntry.set_editable(True)
 
     def make_qr_code(self, but):
+        fileFilter = Gtk.FileFilter()
+        fileFilter.add_mime_type('image/png')
+        fileFilter.set_name('PNG Images')
         dialog = Gtk.FileChooserDialog(
             title="Choose a location to save the card to.",
             parent=self,
             action=Gtk.FileChooserAction.SAVE,
         )
+        dialog.add_filter(fileFilter)
         dialog.add_buttons("Cancel", Gtk.ResponseType.CANCEL, "Select", Gtk.ResponseType.OK)
         dialog.set_default_size(800, 400)
 
@@ -113,7 +117,7 @@ class MainWindow(Gtk.Window):
 
         shutil.copyfile('/tmp/gtkwificard/output.png', finalFile)
 
-        message = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO, Gtk.ButtonsType.CLOSE, "Success!")
+        message = Gtk.MessageDialog(parent=self, flags=0, message_type=Gtk.MessageType.INFO, buttons=Gtk.ButtonsType.CLOSE, text="Success!")
         message.run()
         message.destroy()
         self.destroy()
